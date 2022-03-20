@@ -3,15 +3,12 @@
 <Program>
     <!--DeclField-->
     <SetGlobalVars>
-        <var name="a_variable1" value="poopiez"/>
-        <var name="test" value="among us" />
-        <var name="five" value="5" />
+        <var name="a_variable1" value_type="string" value="poopiez"/>
+        <var name="test" value_type="string" value="among us" />
+        <var name="five" value_type="string" value="5askjpdajdaio" />
     </SetGlobalVars>
     <!--Main Method-->
     <Main>
-        <SetGlobalVar name="five" value="15" />
-        <For range="([five] + [five]) / 5">
-            <OutputConsole text="hey [test]" />
-        </For>
+        <OutputConsole text="[five]" />
     </Main>
 </Program>
