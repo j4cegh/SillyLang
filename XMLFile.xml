@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Program>
+    <!--DeclField-->
+    <SetGlobalVars>
+        <var name="a_variable1" value="poopiez"/>
+        <var name="test" value="among us" />
+        <var name="five" value="5" />
+    </SetGlobalVars>
+    <!--Main Method-->
+    <Main>
+        <For range="([five]) / 5">
+            <OutputConsole text="hey [test]" />
+        </For>
+    </Main>
+</Program>
