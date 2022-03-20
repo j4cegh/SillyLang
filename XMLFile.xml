@@ -9,7 +9,7 @@
     </SetGlobalVars>
     <!--Main Method-->
     <Main>
-        <For range="([five]) / 5">
+        <For range="([five] + [five]) / 5">
             <OutputConsole text="hey [test]" />
         </For>
     </Main>

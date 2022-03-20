@@ -3,7 +3,7 @@ package com.j4ce.sillylang.methods;
 import com.j4ce.sillylang.util.Vars;
 import org.w3c.dom.Node;
 
-import static com.j4ce.sillylang.util.Arguments.*;
+import static com.j4ce.sillylang.util.Attributes.*;
 
 public class WriteConsoleMethod extends Method {
     Node node;

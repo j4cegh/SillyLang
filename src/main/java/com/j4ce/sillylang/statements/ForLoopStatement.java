@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 import javax.script.ScriptException;
 
-import static com.j4ce.sillylang.util.Arguments.*;
+import static com.j4ce.sillylang.util.Attributes.*;
 
 public class ForLoopStatement extends Statement {
     Node node;
