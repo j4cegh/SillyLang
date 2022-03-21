@@ -18,20 +18,12 @@ public class Vars {
 
             switch (value_type) {
                 case "string": {
-                    String value = Vars.InterpretAndReplaceVarString(
-                            Attributes.GetAttributeValue(node, "value")
-                    );
+                    String value = Vars.InterpretAndReplaceVarString(Attributes.GetAttributeValue(node, "value"));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
                 case "number": {
-                    String value = Vars.InterpretAndReplaceVarString(
-                            String.valueOf(
-                                    Integer.parseInt(
-                                            Attributes.GetAttributeValue(node, "value")
-                                    )
-                            )
-                    );
+                    String value = Vars.InterpretAndReplaceVarString(String.valueOf(Integer.parseInt(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
