@@ -13,7 +13,7 @@ import javax.script.ScriptException;
 public class Vars {
     /**
      * Sets a global variable with a node that contains a name, a value and a value_type.
-     * @param node
+     * @param node The variable node.
      */
     public static void SetGlobalVarWithVarNode(Node node) {
         String value_type = "";
@@ -55,19 +55,19 @@ public class Vars {
             }
 
         } catch (ScriptException e) {
-            SillyException.ThrowSillyException(String.format("(at %s) Bad number/equation supplied.", node.getParentNode().getNodeName()));
+            SillyException.ThrowSillyException(String.format("(at %s/%s) Bad number/equation supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(-1);
         }
         catch (VarNameException e) {
-            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable name.", node.getParentNode().getNodeName()));
+            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable name.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(-1);
         }
         catch (VarValueTypeException e) {
-            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable value type.", node.getParentNode().getNodeName()));
+            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value type.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(-1);
         }
         catch (VarValueException e) {
-            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable value.", node.getParentNode().getNodeName()));
+            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(-1);
         }
 
