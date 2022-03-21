@@ -50,25 +50,26 @@ public class Vars {
                     break;
                 }
                 default: {
-
+                    SillyException.ThrowSillyException(String.format("(at %s/%s) Bad variable type supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
+                    System.exit(1);
                 }
             }
 
         } catch (ScriptException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) Bad number/equation supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(-1);
+            System.exit(1);
         }
         catch (VarNameException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable name.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(-1);
+            System.exit(1);
         }
         catch (VarValueTypeException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value type.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(-1);
+            System.exit(1);
         }
         catch (VarValueException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(-1);
+            System.exit(1);
         }
 
     }

@@ -16,7 +16,7 @@ public class SillyInstance {
     public void Run() {
         if (mainMethod == null) {
             System.out.println("The main method cannot be null.");
-            System.exit(-1);
+            System.exit(1);
         }
 
         NodeList mainMethodChildNodes = mainMethod.getChildNodes();
