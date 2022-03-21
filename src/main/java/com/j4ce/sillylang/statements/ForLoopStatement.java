@@ -19,7 +19,7 @@ public class ForLoopStatement extends Statement {
 
     @Override
     public void run() {
-        String rangeString = Vars.InterpretAndReplaceVarString(GetAttributeValue(node, "range"));
+        String rangeString = Vars.ReplaceEmbeddedVariables(GetAttributeValue(node, "range"));
         try {
             int range = EvalMath.Eval(rangeString);
             NodeList forLoopChildNodes = node.getChildNodes();

@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 import javax.script.ScriptException;
 
 public class SetGlobalVarMethod extends Method {
+
     Node node;
 
     public SetGlobalVarMethod(Node node) {

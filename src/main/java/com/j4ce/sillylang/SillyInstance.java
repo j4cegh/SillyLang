@@ -14,8 +14,10 @@ public class SillyInstance {
     }
 
     public void Run() {
-        if (mainMethod == null)
+        if (mainMethod == null) {
             System.out.println("The main method cannot be null.");
+            System.exit(-1);
+        }
 
         NodeList mainMethodChildNodes = mainMethod.getChildNodes();
         for (Map.Entry<String, String> entry : Shared.globalVars.entrySet()) {

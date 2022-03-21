@@ -15,7 +15,7 @@ public class WriteConsoleMethod extends Method {
     @Override
     public void run() {
         String attrTextValue = GetAttributeValue(node, "text");
-        String finalText = Vars.InterpretAndReplaceVarString(attrTextValue);
+        String finalText = Vars.ReplaceEmbeddedVariables(attrTextValue);
         System.out.println(finalText);
     }
 }

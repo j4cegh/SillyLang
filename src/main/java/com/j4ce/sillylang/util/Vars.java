@@ -1,10 +1,7 @@
 package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
-import com.j4ce.sillylang.math.EvalMath;
 import org.w3c.dom.Node;
-
-import javax.script.ScriptException;
 
 public class Vars {
     /**
@@ -18,12 +15,12 @@ public class Vars {
 
             switch (value_type) {
                 case "string": {
-                    String value = Vars.InterpretAndReplaceVarString(Attributes.GetAttributeValue(node, "value"));
+                    String value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
                 case "number": {
-                    String value = Vars.InterpretAndReplaceVarString(String.valueOf(Integer.parseInt(Attributes.GetAttributeValue(node, "value"))));
+                    String value = Vars.ReplaceEmbeddedVariables(String.valueOf(Integer.parseInt(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
@@ -39,7 +36,7 @@ public class Vars {
      * @param val The *potential* variable string.
      * @return The replaced value if there are any variables or the original value.
      */
-    public static String InterpretAndReplaceVarString(String val) {
+    public static String ReplaceEmbeddedVariables(String val) {
         try {
             String valueToExec = val.substring(val.indexOf("[") + 1);
             valueToExec = valueToExec.substring(0, valueToExec.indexOf("]"));
