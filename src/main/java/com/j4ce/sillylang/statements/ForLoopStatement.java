@@ -26,6 +26,7 @@ public class ForLoopStatement extends Statement {
 
             // user loop, not get child loop
             for(int itr = 0; itr < range; itr++) {
+                // get forloop child nodes and execute them
                 for (int itr2 = 0; itr2 < forLoopChildNodes.getLength(); itr2++)
                 {
                     Node loopedNode = forLoopChildNodes.item(itr2);

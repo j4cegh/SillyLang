@@ -2,9 +2,9 @@ package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
 import com.j4ce.sillylang.exceptions.SillyException;
-import com.j4ce.sillylang.exceptions.variables.VarNameException;
-import com.j4ce.sillylang.exceptions.variables.VarValueException;
-import com.j4ce.sillylang.exceptions.variables.VarValueTypeException;
+import com.j4ce.sillylang.exceptions.NameException;
+import com.j4ce.sillylang.exceptions.ValueException;
+import com.j4ce.sillylang.exceptions.ValueTypeException;
 import com.j4ce.sillylang.math.EvalMath;
 import org.w3c.dom.Node;
 
@@ -12,7 +12,7 @@ import javax.script.ScriptException;
 
 public class Vars {
     /**
-     * Sets a global variable with a node that contains a name, a value and a value_type.
+     * Sets a global variable from a node that contains a name, a value and a value_type.
      * @param node The variable node.
      */
     public static void SetGlobalVarWithVarNode(Node node) {
@@ -24,12 +24,12 @@ public class Vars {
             try {
                 name = Attributes.GetAttributeValue(node, "name");
             } catch(NullPointerException e) {
-                throw new VarNameException();
+                throw new NameException();
             }
             try {
                 value_type = Attributes.GetAttributeValue(node, "value_type");
             } catch(NullPointerException e) {
-                throw new VarValueTypeException();
+                throw new ValueTypeException();
             }
             switch (value_type) {
                 case "text":
@@ -37,7 +37,7 @@ public class Vars {
                     try {
                         value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     } catch (NullPointerException e) {
-                        throw new VarValueException();
+                        throw new ValueException();
                     }
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
@@ -59,15 +59,15 @@ public class Vars {
             SillyException.ThrowSillyException(String.format("(at %s/%s) Bad number/equation supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(1);
         }
-        catch (VarNameException e) {
+        catch (NameException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable name.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(1);
         }
-        catch (VarValueTypeException e) {
+        catch (ValueTypeException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value type.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(1);
         }
-        catch (VarValueException e) {
+        catch (ValueException e) {
             SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value.", node.getParentNode().getNodeName(), node.getNodeName()));
             System.exit(1);
         }

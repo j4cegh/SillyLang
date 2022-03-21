@@ -6,8 +6,12 @@ import com.j4ce.sillylang.statements.ForLoopStatement;
 import org.w3c.dom.Node;
 import static com.j4ce.sillylang.Keywords.*;
 
-public class SillyCode {
 
+public class SillyCode {
+    /**
+     * Executes every runnable supplied node.
+     * @param node The (possibly executable) node.
+     */
     public static void InterpretAndRun(Node node) {
         InterpretRunStatements(node);
         InterpretRunMethods(node);
@@ -27,6 +31,7 @@ public class SillyCode {
                 setGlobalVarMethod.run();
             }
             case M_OutputMessageBox: {
+                // TODO: make it work
                 break;
             }
             default: {
