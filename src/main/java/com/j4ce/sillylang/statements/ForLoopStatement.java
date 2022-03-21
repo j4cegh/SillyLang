@@ -21,7 +21,7 @@ public class ForLoopStatement extends Statement {
     public void run() {
         String rangeString = Vars.ReplaceEmbeddedVariables(GetAttributeValue(node, "range"));
         try {
-            int range = EvalMath.Eval(rangeString);
+            int range = EvalMath.ExpressionInt(rangeString);
             NodeList forLoopChildNodes = node.getChildNodes();
 
             // user loop, not get child loop

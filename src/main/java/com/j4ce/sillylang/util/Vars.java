@@ -1,6 +1,8 @@
 package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
+import com.j4ce.sillylang.exceptions.SillyException;
+import com.j4ce.sillylang.math.EvalMath;
 import org.w3c.dom.Node;
 
 public class Vars {
@@ -14,20 +16,26 @@ public class Vars {
             String value_type = Attributes.GetAttributeValue(node, "value_type");
 
             switch (value_type) {
+                case "text":
                 case "string": {
                     String value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
+
+                case "int":
                 case "number": {
-                    String value = Vars.ReplaceEmbeddedVariables(String.valueOf(Integer.parseInt(Attributes.GetAttributeValue(node, "value"))));
+                    String value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
+                }
+                default: {
+                    throw new Exception();
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("How did we even get here?");
+            SillyException.ThrowSillyException("The value_type provided differs from the final result.");
         }
     }
 

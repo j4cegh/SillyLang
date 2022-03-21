@@ -3,12 +3,10 @@
 <Program>
     <!--DeclField-->
     <SetGlobalVars>
-        <var name="a_variable1" value_type="string" value="poopiez"/>
-        <var name="test" value_type="string" value="among us" />
-        <var name="five" value_type="string" value="5askjpdajdaio" />
+        <var name="a_variable1" value_type="eq" value="23-2"/>
     </SetGlobalVars>
     <!--Main Method-->
     <Main>
-        <OutputConsole text="[five]" />
+        <OutputConsole text="[asdasda]" />
     </Main>
 </Program>
