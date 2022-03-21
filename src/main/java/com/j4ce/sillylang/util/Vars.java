@@ -2,8 +2,13 @@ package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
 import com.j4ce.sillylang.exceptions.SillyException;
+import com.j4ce.sillylang.exceptions.variables.VarNameException;
+import com.j4ce.sillylang.exceptions.variables.VarValueException;
+import com.j4ce.sillylang.exceptions.variables.VarValueTypeException;
 import com.j4ce.sillylang.math.EvalMath;
 import org.w3c.dom.Node;
+
+import javax.script.ScriptException;
 
 public class Vars {
     /**
@@ -11,32 +16,61 @@ public class Vars {
      * @param node
      */
     public static void SetGlobalVarWithVarNode(Node node) {
-        try {
-            String name = Attributes.GetAttributeValue(node, "name");
-            String value_type = Attributes.GetAttributeValue(node, "value_type");
+        String value_type = "";
+        String name = "";
+        String value = "";
 
+        try {
+            try {
+                name = Attributes.GetAttributeValue(node, "name");
+            } catch(NullPointerException e) {
+                throw new VarNameException();
+            }
+            try {
+                value_type = Attributes.GetAttributeValue(node, "value_type");
+            } catch(NullPointerException e) {
+                throw new VarValueTypeException();
+            }
             switch (value_type) {
                 case "text":
                 case "string": {
-                    String value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
+                    try {
+                        value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
+                    } catch (NullPointerException e) {
+                        throw new VarValueException();
+                    }
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
 
                 case "int":
                 case "number": {
-                    String value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
                 default: {
-                    throw new Exception();
+
                 }
             }
 
-        } catch (Exception e) {
-            SillyException.ThrowSillyException("The value_type provided differs from the final result.");
+        } catch (ScriptException e) {
+            SillyException.ThrowSillyException(String.format("(at %s) Bad number/equation supplied.", node.getParentNode().getNodeName()));
+            System.exit(-1);
         }
+        catch (VarNameException e) {
+            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable name.", node.getParentNode().getNodeName()));
+            System.exit(-1);
+        }
+        catch (VarValueTypeException e) {
+            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable value type.", node.getParentNode().getNodeName()));
+            System.exit(-1);
+        }
+        catch (VarValueException e) {
+            SillyException.ThrowSillyException(String.format("(at %s) You must set the variable value.", node.getParentNode().getNodeName()));
+            System.exit(-1);
+        }
+
     }
 
     /**
