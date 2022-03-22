@@ -8,7 +8,6 @@ import javax.script.ScriptException;
 public class EvalMath {
     public static int ExpressionInt(String possibleMath) throws ScriptException {
         Expression expression = new ExpressionBuilder(possibleMath).build();
-        int result = (int) expression.evaluate();
-        return result;
+        return (int) expression.evaluate();
     }
 }
