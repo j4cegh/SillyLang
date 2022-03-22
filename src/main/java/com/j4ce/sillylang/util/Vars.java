@@ -32,8 +32,7 @@ public class Vars {
                 System.exit(1);
             }
             switch (value_type) {
-                case "text":
-                case "string": {
+                case "text", "string" -> {
                     try {
                         value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     } catch (NullPointerException e) {
@@ -42,14 +41,12 @@ public class Vars {
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
-
-                case "int":
-                case "number": {
+                case "int", "number" -> {
                     value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
                 }
-                default: {
+                default -> {
                     SillyException.ThrowWithLocation(node, "Bad variable type supplied.");
                 }
             }
