@@ -1,6 +1,6 @@
 package com.j4ce.sillylang;
 
-import com.j4ce.sillylang.math.EvalMath;
+import com.j4ce.sillylang.base.Silly;
 
 public class Main {
 

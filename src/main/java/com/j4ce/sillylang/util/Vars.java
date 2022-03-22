@@ -1,7 +1,7 @@
 package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
-import com.j4ce.sillylang.SillyException;
+import com.j4ce.sillylang.base.SillyException;
 import com.j4ce.sillylang.math.EvalMath;
 import net.objecthunter.exp4j.tokenizer.UnknownFunctionOrVariableException;
 import org.w3c.dom.Node;

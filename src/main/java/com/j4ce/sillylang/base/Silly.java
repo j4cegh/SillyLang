@@ -1,5 +1,6 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.base;
 
+import com.j4ce.sillylang.Shared;
 import com.j4ce.sillylang.declfields.SetGlobalVarsDeclField;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

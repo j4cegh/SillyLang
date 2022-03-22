@@ -1,8 +1,9 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.base;
 
 import org.w3c.dom.Node;
 
 public class SillyException {
+
     public static void ThrowWithLocation(Node node, String desc) {
         SillyException.Throw(String.format("(at %s/%s) %s", node.getParentNode().getNodeName(), node.getNodeName(), desc));
         System.exit(1);

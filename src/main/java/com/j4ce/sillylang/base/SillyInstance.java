@@ -1,5 +1,6 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.base;
 
+import com.j4ce.sillylang.Shared;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -15,7 +16,7 @@ public class SillyInstance {
 
     public void Run() {
         if (mainMethod == null) {
-            System.out.println("The main method cannot be null.");
+            SillyException.Throw("The main method cannot be null.");
             System.exit(1);
         }
 

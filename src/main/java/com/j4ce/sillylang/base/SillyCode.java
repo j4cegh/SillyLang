@@ -1,4 +1,4 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.base;
 
 import com.j4ce.sillylang.methods.SetGlobalVarMethod;
 import com.j4ce.sillylang.methods.WriteConsoleMethod;

@@ -1,6 +1,6 @@
 package com.j4ce.sillylang.methods;
 
-import com.j4ce.sillylang.SillyException;
+import com.j4ce.sillylang.base.SillyException;
 import com.j4ce.sillylang.util.Attributes;
 import org.w3c.dom.Node;
 

@@ -1,6 +1,6 @@
 package com.j4ce.sillylang.statements;
 
-import com.j4ce.sillylang.SillyCode;
+import com.j4ce.sillylang.base.SillyCode;
 import com.j4ce.sillylang.math.EvalMath;
 import com.j4ce.sillylang.util.Vars;
 import org.w3c.dom.Node;

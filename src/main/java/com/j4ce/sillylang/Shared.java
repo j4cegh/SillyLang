@@ -1,4 +1,6 @@
 package com.j4ce.sillylang;
+import com.j4ce.sillylang.base.SillyInstance;
+
 import java.util.HashMap;
 import java.util.Map;
 
