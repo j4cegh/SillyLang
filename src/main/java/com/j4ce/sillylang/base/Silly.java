@@ -10,7 +10,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import static com.j4ce.sillylang.Keywords.*;
+import static com.j4ce.sillylang.base.Keywords.*;
 
 public class Silly implements Runnable {
     @Override

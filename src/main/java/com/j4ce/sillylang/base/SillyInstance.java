@@ -29,7 +29,6 @@ public class SillyInstance {
         for (int itr = 0; itr < mainMethodChildNodes.getLength(); itr++)
         {
             Node node = mainMethodChildNodes.item(itr);
-
             SillyCode.InterpretAndRun(node);
         }
 

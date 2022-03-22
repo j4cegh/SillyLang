@@ -1,4 +1,6 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.util;
+
+import com.j4ce.sillylang.Shared;
 
 public class GlobalVarManager {
     public static String getGlobalVarValue(String globalVar) {

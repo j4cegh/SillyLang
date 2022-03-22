@@ -1,4 +1,4 @@
-package com.j4ce.sillylang;
+package com.j4ce.sillylang.base;
 
 public class Keywords {
     public static final String Program = "Program";
@@ -12,4 +12,10 @@ public class Keywords {
     public static final String S_ForLoop = "For";
     // DeclFields
     public static final String DF_SetGlobalVars = "SetGlobalVars";
+    // Types
+    public static final String T_String = "string";
+    public static final String T_Text = "text";
+    public static final String T_Int = "int";
+    public static final String T_Number = "number";
+    public static final String T_Float = "float";
 }

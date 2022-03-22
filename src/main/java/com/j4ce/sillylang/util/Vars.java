@@ -1,12 +1,13 @@
 package com.j4ce.sillylang.util;
 
-import com.j4ce.sillylang.GlobalVarManager;
 import com.j4ce.sillylang.base.SillyException;
 import com.j4ce.sillylang.math.EvalMath;
 import net.objecthunter.exp4j.tokenizer.UnknownFunctionOrVariableException;
 import org.w3c.dom.Node;
 
 import javax.script.ScriptException;
+
+import static com.j4ce.sillylang.base.Keywords.*;
 
 public class Vars {
     /**
@@ -32,7 +33,7 @@ public class Vars {
                 System.exit(1);
             }
             switch (value_type) {
-                case "text", "string" -> {
+                case T_Text, T_String -> {
                     try {
                         value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     } catch (NullPointerException e) {
@@ -40,11 +41,11 @@ public class Vars {
                     }
                     GlobalVarManager.setGlobalVar(name, value);
                 }
-                case "int", "number" -> {
+                case T_Int, T_Number -> {
                     value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                 }
-                case "float" -> {
+                case T_Float -> {
                     value = String.valueOf(EvalMath.ExpressionFloat(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
                 }

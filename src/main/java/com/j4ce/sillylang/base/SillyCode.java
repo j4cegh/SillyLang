@@ -5,9 +5,7 @@ import com.j4ce.sillylang.methods.WriteConsoleMethod;
 import com.j4ce.sillylang.statements.ForLoopStatement;
 import org.w3c.dom.Node;
 
-import javax.swing.*;
-
-import static com.j4ce.sillylang.Keywords.*;
+import static com.j4ce.sillylang.base.Keywords.*;
 
 
 public class SillyCode {
