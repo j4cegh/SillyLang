@@ -39,12 +39,14 @@ public class Vars {
                         SillyException.ThrowWithLocation(node, "You must set the variable value.");
                     }
                     GlobalVarManager.setGlobalVar(name, value);
-                    break;
                 }
                 case "int", "number" -> {
                     value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
                     GlobalVarManager.setGlobalVar(name, value);
-                    break;
+                }
+                case "float" -> {
+                    value = String.valueOf(EvalMath.ExpressionFloat(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    GlobalVarManager.setGlobalVar(name, value);
                 }
                 default -> {
                     SillyException.ThrowWithLocation(node, "Bad variable type supplied.");

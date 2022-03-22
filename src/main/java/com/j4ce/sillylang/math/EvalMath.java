@@ -10,4 +10,8 @@ public class EvalMath {
         Expression expression = new ExpressionBuilder(possibleMath).build();
         return (int) expression.evaluate();
     }
+    public static float ExpressionFloat(String possibleMath) throws ScriptException {
+        Expression expression = new ExpressionBuilder(possibleMath).build();
+        return (float) expression.evaluate();
+    }
 }
