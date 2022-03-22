@@ -4,6 +4,9 @@ import com.j4ce.sillylang.methods.SetGlobalVarMethod;
 import com.j4ce.sillylang.methods.WriteConsoleMethod;
 import com.j4ce.sillylang.statements.ForLoopStatement;
 import org.w3c.dom.Node;
+
+import javax.swing.*;
+
 import static com.j4ce.sillylang.Keywords.*;
 
 
@@ -31,7 +34,7 @@ public class SillyCode {
                 setGlobalVarMethod.run();
             }
             case M_OutputMessageBox: {
-                // TODO: make it work
+
                 break;
             }
             default: {

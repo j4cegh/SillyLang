@@ -1,11 +1,9 @@
 package com.j4ce.sillylang.util;
 
 import com.j4ce.sillylang.GlobalVarManager;
-import com.j4ce.sillylang.exceptions.SillyException;
-import com.j4ce.sillylang.exceptions.NameException;
-import com.j4ce.sillylang.exceptions.ValueException;
-import com.j4ce.sillylang.exceptions.ValueTypeException;
+import com.j4ce.sillylang.SillyException;
 import com.j4ce.sillylang.math.EvalMath;
+import net.objecthunter.exp4j.tokenizer.UnknownFunctionOrVariableException;
 import org.w3c.dom.Node;
 
 import javax.script.ScriptException;
@@ -24,12 +22,14 @@ public class Vars {
             try {
                 name = Attributes.GetAttributeValue(node, "name");
             } catch(NullPointerException e) {
-                throw new NameException();
+                SillyException.ThrowWithLocation(node, "You must set the variable name.");
+                System.exit(1);
             }
             try {
                 value_type = Attributes.GetAttributeValue(node, "value_type");
             } catch(NullPointerException e) {
-                throw new ValueTypeException();
+                SillyException.ThrowWithLocation(node, "You must set the variable value type.");
+                System.exit(1);
             }
             switch (value_type) {
                 case "text":
@@ -37,7 +37,7 @@ public class Vars {
                     try {
                         value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
                     } catch (NullPointerException e) {
-                        throw new ValueException();
+                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
                     }
                     GlobalVarManager.setGlobalVar(name, value);
                     break;
@@ -50,26 +50,12 @@ public class Vars {
                     break;
                 }
                 default: {
-                    SillyException.ThrowSillyException(String.format("(at %s/%s) Bad variable type supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
-                    System.exit(1);
+                    SillyException.ThrowWithLocation(node, "Bad variable type supplied.");
                 }
             }
 
-        } catch (ScriptException e) {
-            SillyException.ThrowSillyException(String.format("(at %s/%s) Bad number/equation supplied.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(1);
-        }
-        catch (NameException e) {
-            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable name.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(1);
-        }
-        catch (ValueTypeException e) {
-            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value type.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(1);
-        }
-        catch (ValueException e) {
-            SillyException.ThrowSillyException(String.format("(at %s/%s) You must set the variable value.", node.getParentNode().getNodeName(), node.getNodeName()));
-            System.exit(1);
+        } catch (ScriptException | UnknownFunctionOrVariableException e) {
+            SillyException.ThrowWithLocation(node, "Bad number/equation supplied.");
         }
 
     }
