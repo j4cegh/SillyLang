@@ -13,6 +13,7 @@ public class Keywords {
     // DeclFields
     public static final String DF_SetGlobalVars = "SetGlobalVars";
     // Types
+    public static final String T_StringLiteral = "stringliteral";
     public static final String T_String = "string";
     public static final String T_Text = "text";
     public static final String T_Int = "int";

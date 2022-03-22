@@ -12,7 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import static com.j4ce.sillylang.base.Keywords.*;
 
-public class Silly implements Runnable {
+public class SillyMain implements Runnable {
     @Override
     public void run() {
         try {

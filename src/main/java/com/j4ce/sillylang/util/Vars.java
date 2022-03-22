@@ -33,6 +33,14 @@ public class Vars {
                 System.exit(1);
             }
             switch (value_type) {
+                case T_StringLiteral -> {
+                    try {
+                        value = Attributes.GetAttributeValue(node, "value");
+                    } catch (NullPointerException e) {
+                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
+                    }
+                    GlobalVarManager.setGlobalVar(name, value);
+                }
                 case T_Text, T_String -> {
                     try {
                         value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
@@ -42,11 +50,19 @@ public class Vars {
                     GlobalVarManager.setGlobalVar(name, value);
                 }
                 case T_Int, T_Number -> {
-                    value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    try {
+                        value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    } catch (NullPointerException e) {
+                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
+                    }
                     GlobalVarManager.setGlobalVar(name, value);
                 }
                 case T_Float -> {
-                    value = String.valueOf(EvalMath.ExpressionFloat(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    try {
+                        value = String.valueOf(EvalMath.ExpressionFloat(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    } catch (NullPointerException e) {
+                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
+                    }
                     GlobalVarManager.setGlobalVar(name, value);
                 }
                 default -> {
