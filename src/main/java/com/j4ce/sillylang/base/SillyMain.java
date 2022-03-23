@@ -13,11 +13,16 @@ import java.io.File;
 import static com.j4ce.sillylang.base.Keywords.*;
 
 public class SillyMain implements Runnable {
+    String fileName = null;
+
+    public SillyMain(String fileName) {
+        this.fileName = fileName;
+    }
     @Override
     public void run() {
         try {
             //creating a constructor of file class and parsing an XML file
-            File file = new File("XMLFile.xml");
+            File file = new File(fileName);
             //an instance of factory that gives a document builder
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             //an instance of builder to parse the specified xml file

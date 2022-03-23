@@ -6,9 +6,14 @@ public class Main {
 
     public static void main(String[] args)
     {
-        SillyMain _sillyMain = new SillyMain();
-        Thread langThread = new Thread(_sillyMain);
-        langThread.start();
+        if (args.length > 0) {
+            SillyMain _sillyMain = new SillyMain(args[0]);
+            Thread langThread = new Thread(_sillyMain);
+            langThread.start();
+        } else {
+            System.out.println("File not supplied.");
+        }
+
     }
 
 }
