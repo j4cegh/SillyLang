@@ -2,6 +2,7 @@ package com.j4ce.sillylang.methods;
 
 import com.j4ce.sillylang.base.SillyException;
 import com.j4ce.sillylang.util.Attributes;
+import com.j4ce.sillylang.util.Vars;
 import org.w3c.dom.Node;
 
 import javax.swing.*;
@@ -18,13 +19,13 @@ public class OutputMessageBoxMethod extends Method {
         String text = null;
 
         try {
-            title = Attributes.GetAttributeValue(node, "title");
+            title = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "title"));
         } catch (NullPointerException e) {
             SillyException.ThrowWithLocation(node, "You must set the messagebox title.");
             System.exit(1);
         }
         try {
-            text = Attributes.GetAttributeValue(node, "text");
+            text = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "text"));
         } catch (NullPointerException e) {
             SillyException.ThrowWithLocation(node, "You must set the messagebox text.");
             System.exit(1);
