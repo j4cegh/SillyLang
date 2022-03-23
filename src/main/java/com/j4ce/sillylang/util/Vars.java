@@ -33,7 +33,7 @@ public class Vars {
                 System.exit(1);
             }
             switch (value_type) {
-                case T_StringLiteral -> {
+                case T_StringLiteral, T_StringL -> {
                     try {
                         value = Attributes.GetAttributeValue(node, "value");
                     } catch (NullPointerException e) {
