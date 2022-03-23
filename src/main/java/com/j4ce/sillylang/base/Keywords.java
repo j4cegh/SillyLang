@@ -20,4 +20,5 @@ public class Keywords {
     public static final String T_Int = "int";
     public static final String T_Number = "number";
     public static final String T_Float = "float";
+    public static final String T_Double = "double";
 }

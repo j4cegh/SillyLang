@@ -65,6 +65,15 @@ public class Vars {
                     }
                     GlobalVarManager.setGlobalVar(name, value);
                 }
+                case T_Double -> {
+                    try {
+                        value = String.valueOf(EvalMath.ExpressionDouble(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
+                    } catch (NullPointerException e) {
+                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
+                    }
+                    GlobalVarManager.setGlobalVar(name, value);
+                }
+
                 default -> {
                     SillyException.ThrowWithLocation(node, "Bad variable type supplied.");
                 }
