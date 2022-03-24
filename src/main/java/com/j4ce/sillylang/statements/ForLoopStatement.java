@@ -19,7 +19,7 @@ public class ForLoopStatement extends Statement {
 
     @Override
     public void run() {
-        String rangeString = Vars.ReplaceEmbeddedVariables(GetAttributeValue(node, "range"));
+        String rangeString = Vars.ReplaceEmbeddedVariables(GetAttributeValue(node, "range", () -> {}));
         try {
             int range = EvalMath.ExpressionInt(rangeString);
             NodeList forLoopChildNodes = node.getChildNodes();
@@ -33,12 +33,9 @@ public class ForLoopStatement extends Statement {
                     SillyCode.InterpretAndRun(loopedNode);
                 }
             }
-        } catch (ScriptException e) {
-
-        } catch(NumberFormatException e) {
+        } catch (ScriptException | NumberFormatException e) {
 
         }
-
 
 
     }

@@ -15,7 +15,7 @@ public class WriteConsoleMethod extends Method {
     @Override
     public void run() {
         // TODO: add types for console output
-        String attrTextValue = GetAttributeValue(node, "text");
+        String attrTextValue = GetAttributeValue(node, "text", () -> {});
         String finalText = Vars.ReplaceEmbeddedVariables(attrTextValue);
         System.out.println(finalText);
     }

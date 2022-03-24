@@ -4,6 +4,7 @@ import com.j4ce.sillylang.methods.OutputMessageBoxMethod;
 import com.j4ce.sillylang.methods.SetGlobalVarMethod;
 import com.j4ce.sillylang.methods.WriteConsoleMethod;
 import com.j4ce.sillylang.statements.ForLoopStatement;
+import com.j4ce.sillylang.statements.WhileLoopStatement;
 import org.w3c.dom.Node;
 
 import static com.j4ce.sillylang.base.Keywords.*;
@@ -36,17 +37,21 @@ public class SillyCode {
                 outputMessageBoxMethod.run();
             }
             default -> {
-                
+
             }
         }
     }
 
     private static void InterpretRunStatements(Node node) {
         switch (node.getNodeName()) {
-            case S_ForLoop: {
+            case S_ForLoop -> {
                 ForLoopStatement forLoopStatement = new ForLoopStatement(node);
                 forLoopStatement.run();
-                break;
+            }
+
+            case S_WhileLoop -> {
+                WhileLoopStatement whileLoopStatement = new WhileLoopStatement(node);
+                whileLoopStatement.run();
             }
         }
     }

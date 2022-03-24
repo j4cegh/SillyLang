@@ -15,62 +15,18 @@ public class Vars {
      * @param node The variable node.
      */
     public static void SetGlobalVarWithVarNode(Node node) {
-        String value_type = "";
-        String name = "";
-        String value = "";
+        String value_type;
+        String name;
+        String value;
 
         try {
-            try {
-                name = Attributes.GetAttributeValue(node, "name");
-            } catch(NullPointerException e) {
-                SillyException.ThrowWithLocation(node, "You must set the variable name.");
-                System.exit(1);
-            }
-            try {
-                value_type = Attributes.GetAttributeValue(node, "value_type");
-            } catch(NullPointerException e) {
-                SillyException.ThrowWithLocation(node, "You must set the variable value type.");
-                System.exit(1);
-            }
+            name = Attributes.GetAttributeValue(node, "name", () -> SillyException.ThrowWithLocation(node, "You must set the variable name."));
+
+            value_type = Attributes.GetAttributeValue(node, "value_type", () -> SillyException.ThrowWithLocation(node, "You must set the variable value type."));
+            value = Attributes.GetAttributeValue(node, "value", () -> SillyException.ThrowWithLocation(node, "You must set the variable value."));
+
             switch (value_type) {
-                case T_StringLiteral, T_StringL -> {
-                    try {
-                        value = Attributes.GetAttributeValue(node, "value");
-                    } catch (NullPointerException e) {
-                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
-                    }
-                    GlobalVarManager.setGlobalVar(name, value);
-                }
-                case T_Text, T_String -> {
-                    try {
-                        value = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"));
-                    } catch (NullPointerException e) {
-                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
-                    }
-                    GlobalVarManager.setGlobalVar(name, value);
-                }
-                case T_Int, T_Number -> {
-                    try {
-                        value = String.valueOf(EvalMath.ExpressionInt(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
-                    } catch (NullPointerException e) {
-                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
-                    }
-                    GlobalVarManager.setGlobalVar(name, value);
-                }
-                case T_Float -> {
-                    try {
-                        value = String.valueOf(EvalMath.ExpressionFloat(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
-                    } catch (NullPointerException e) {
-                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
-                    }
-                    GlobalVarManager.setGlobalVar(name, value);
-                }
-                case T_Double -> {
-                    try {
-                        value = String.valueOf(EvalMath.ExpressionDouble(Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "value"))));
-                    } catch (NullPointerException e) {
-                        SillyException.ThrowWithLocation(node, "You must set the variable value.");
-                    }
+                case T_StringLiteral, T_StringL, T_Float, T_Int, T_Number, T_Text, T_String, T_Double -> {
                     GlobalVarManager.setGlobalVar(name, value);
                 }
 
@@ -79,7 +35,7 @@ public class Vars {
                 }
             }
 
-        } catch (ScriptException | UnknownFunctionOrVariableException e) {
+        } catch (UnknownFunctionOrVariableException e) {
             SillyException.ThrowWithLocation(node, "Bad number/equation supplied.");
         }
 

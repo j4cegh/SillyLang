@@ -10,6 +10,7 @@ public class Keywords {
     public static final String M_OutputMessageBox = "OutputMessageBox";
     // Statements
     public static final String S_ForLoop = "For";
+    public static final String S_WhileLoop = "While";
     // DeclFields
     public static final String DF_SetGlobalVars = "SetGlobalVars";
     // Types

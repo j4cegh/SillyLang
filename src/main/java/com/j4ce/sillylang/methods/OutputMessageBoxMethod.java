@@ -15,23 +15,17 @@ public class OutputMessageBoxMethod extends Method {
     }
     @Override
     public void run() {
-        String title = null;
-        String text = null;
+        String title;
+        String text;
 
-        try {
-            title = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "title"));
-        } catch (NullPointerException e) {
-            SillyException.ThrowWithLocation(node, "You must set the messagebox title.");
-            System.exit(1);
-        }
-        try {
-            text = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "text"));
-        } catch (NullPointerException e) {
-            SillyException.ThrowWithLocation(node, "You must set the messagebox text.");
-            System.exit(1);
-        }
+        title = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "title", () ->
+            SillyException.ThrowWithLocation(node, "You must set the messagebox title.")
+        ));
+
+        text = Vars.ReplaceEmbeddedVariables(Attributes.GetAttributeValue(node, "text", () ->
+                SillyException.ThrowWithLocation(node, "You must set the messagebox text.")
+        ));
+
         JOptionPane.showMessageDialog(null, text, title, JOptionPane.INFORMATION_MESSAGE);
-
-
     }
 }
