@@ -22,22 +22,22 @@ public class SillyCode {
     private static void InterpretRunMethods(Node node) {
 
         switch (node.getNodeName()) {
-            case M_OutputConsole: {
+            case M_OutputConsole -> {
                 WriteConsoleMethod writeConsoleMethod = new WriteConsoleMethod(node);
                 writeConsoleMethod.run();
                 break;
             }
             // sets singular global var
-            case M_SetGlobalVar: {
+            case M_SetGlobalVar -> {
                 SetGlobalVarMethod setGlobalVarMethod = new SetGlobalVarMethod(node);
                 setGlobalVarMethod.run();
             }
-            case M_OutputMessageBox: {
+            case M_OutputMessageBox -> {
                 OutputMessageBoxMethod outputMessageBoxMethod = new OutputMessageBoxMethod(node);
                 outputMessageBoxMethod.run();
                 break;
             }
-            default: {
+            default -> {
 
             }
         }
