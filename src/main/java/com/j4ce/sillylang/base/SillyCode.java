@@ -25,7 +25,6 @@ public class SillyCode {
             case M_OutputConsole -> {
                 WriteConsoleMethod writeConsoleMethod = new WriteConsoleMethod(node);
                 writeConsoleMethod.run();
-                break;
             }
             // sets singular global var
             case M_SetGlobalVar -> {
@@ -35,10 +34,9 @@ public class SillyCode {
             case M_OutputMessageBox -> {
                 OutputMessageBoxMethod outputMessageBoxMethod = new OutputMessageBoxMethod(node);
                 outputMessageBoxMethod.run();
-                break;
             }
             default -> {
-
+                
             }
         }
     }
